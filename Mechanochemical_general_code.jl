@@ -18,7 +18,7 @@ function threshold(x,x₀,xth)
   return  (0.5 * (tanh.(x/x₀ .- xth/x₀).+1)) 
 end
 
-
+#function to run a single simulation with a few given parameters
 function run(χ,λ⁻²,η,T,Δt,part) 
 
   # Time discretisation parameters
