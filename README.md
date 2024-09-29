@@ -18,6 +18,9 @@ Gridap is a registered package in the official Julia package registry. Thus, the
 
 >pkg> add Gridap
 
+* **`Plots`** Julia library for Plotting
+
+
 ## Usage
 
 On the main section in the code there is specified the different constants and length of the simulation. There the values can be changed to the desired ones and then one can run the code as a normal Julia code.
