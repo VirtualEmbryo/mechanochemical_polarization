@@ -28,7 +28,7 @@ On the main section in the code there is specified the different constants and l
 Each example is in the folder `./Examples`, including:
 * `./Examples/Heatmap`
 * `./Examples/Opto_activation` 
-
+* `./Examples/Opto_activation_local_inhibition` 
 To run one of the examples, run it like
 ```
 cd ./Examples
@@ -36,3 +36,6 @@ julia
 include("./mechanochemical_opto_front2back.jl")
 
 ```
+
+Results will be stored in the relevant folder, each example code has a folder name in the "simulation" parameter. The folder name will be for example Heatmap and the subfolders that will create to store the simulation data will depend on the simulation parameters introduced.
+The code stores a copy of itself in the output folder, to be able to check after a given time for the exact version of the code and of mechanical parameters that where used.
