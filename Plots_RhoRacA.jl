@@ -3,6 +3,7 @@ using Plots
 using Plots.PlotMeasures
 using DelimitedFiles
 
+#plot function to make the heatmaps arrays of simulations
 function plots_heat(time,α₀,β₀,nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,α, β, dᵃ, dᵇ,αt,βt)
   xplotp1 = range(0, L, length=partition+1)
   xplotm1 = range(0, L, length=partition-1)
@@ -62,7 +63,7 @@ function plots_heat(time,α₀,β₀,nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,
   savefig(pPNG*"alpha=$α₀ beta=$β₀.png") 
 end
 
-
+#function to plot many outputs for a standard standalone simulation
 function plots_run(nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,pRac, pRho, koffrac, koffrho,αt,βt)
   xplotp1 = range(0, L, length=partition+1)
   xplotm1 = range(0, L, length=partition-1)
@@ -384,6 +385,8 @@ function plots_run(nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,pR
   plot(p1, p2, p5,p4,p3,p6, layout = 6, plot_title="T=$T λ⁻²=$λ⁻²  σₐ₀=$σₐ₀  k=$k  η=$η",plot_titlefontsize=10,size=(800, 400))
   savefig(pPNG*"all_t=$T.pdf") 
 end
+
+#function to plot results for a model without biochemistry
 function plots_run2(nΔt,vt,xt,tensiont,λ⁻²,pPNG)
   xplotp1 = range(0, L, length=partition+1)
   xplotm1 = range(0, L, length=partition-1)
@@ -425,11 +428,11 @@ function plots_run2(nΔt,vt,xt,tensiont,λ⁻²,pPNG)
   savefig(pPNG*"all.pdf") 
 end
 
+#IN case you want to simulate multiple runs for diferent viscosities or frictions then you use this to plot the dependance on those
 function plots_end()
   xplotm1 = range(0, L, length=partition-1)
   xplotm2 = range(0, L, length=partition-2)
 
-  #FINAL PLOTS ARTICLE
   whicheta = 1 
   tensiontplot=tension[2,whicheta,end,:] 
   tensiontplot3=ρ_b[2,whicheta,end,:]
