@@ -29,6 +29,7 @@ Each example is in the folder `./Examples`, including:
 * `./Examples/Heatmap`
 * `./Examples/Opto_activation` 
 * `./Examples/Opto_activation_local_inhibition` 
+
 To run one of the examples, run it like
 ```
 cd ./Examples
