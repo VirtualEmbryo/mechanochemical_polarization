@@ -2,7 +2,7 @@
 
 `mechanochemical_polarization` is distributed as a supplemental material to the paper:
 
-> 
+> Henry De Belly, Andreu Fernández Gallén, Evelyn Strickland, Dorothy C. Estrada, Patrick J. Zager, Janis K Burkhardt, Hervé Turlier,  Orion D. Weiner Title: Long range mutual activation establishes Rho and Rac polarity during cell migration 
 
 The code is based on the [Gridap](https://github.com/gridap/Gridap.jl) for the finite-element implementation.
 
