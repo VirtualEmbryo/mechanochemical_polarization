@@ -80,8 +80,8 @@ function run(χ,λ⁻²,η,T,Δt,part)
   Rho =  TrialFESpace(Q0)
 
   #Building the vectors used for introducing opto influence as an increase in α and β
-  α₀o(x)= αopto*exp(-0.5*(x[1])^2/((L/4)^2)) 
-  β₀o(x)= βopto*exp(-0.5*(x[1]-L)^2/((L/4)^2))#2.25*β₀*exp(-0.5*(x[1]-L)^2/((L/4)^2))
+  α₀o(x)= αopto*exp(-0.5*(x[1])^2/((wrac)^2)) 
+  β₀o(x)= βopto*exp(-0.5*(x[1]-L)^2/((wrac)^2))#2.25*β₀*exp(-0.5*(x[1]-L)^2/((L/4)^2))
   α₀opto = zeros(partition)
   β₀opto = zeros(partition)
   for j in 1:1:(partition)
@@ -350,7 +350,7 @@ const koff = 1.4  # ezrin koff [1/s] toff=0.7s Fritzsche et al
 const kon  = 5.0  # ezrin kon [1/s] ton =0.2s Fritzsche et al
 D = 0.3   # diffusion of the membrane [um^2/s] 0.003  Fritzsche et al
 M0 = 10.0 #total amount of ezrin
-const wrac=L/2.5 #if we want to start polarized we use this for the Gaussian distribution
+const wrac=L/5 #if we want to start polarized we use this for the Gaussian distribution
 #in case one wants nonlinear deactication if the system would be unstable
 λᵇ = 0   # for bound ezrin 
 λʳᴬ= 0   #for Rho
