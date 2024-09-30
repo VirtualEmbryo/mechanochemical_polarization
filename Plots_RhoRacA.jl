@@ -3,7 +3,6 @@ using Plots
 using Plots.PlotMeasures
 using DelimitedFiles
 
-#plot function to make the heatmaps arrays of simulations
 function plots_heat(time,α₀,β₀,nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,α, β, dᵃ, dᵇ,αt,βt)
   xplotp1 = range(0, L, length=partition+1)
   xplotm1 = range(0, L, length=partition-1)
@@ -63,8 +62,8 @@ function plots_heat(time,α₀,β₀,nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,
   savefig(pPNG*"alpha=$α₀ beta=$β₀.png") 
 end
 
-#function to plot many outputs for a standard standalone simulation
-function plots_run(nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,pRac, pRho, koffrac, koffrho,αt,βt)
+
+function plots_run(nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,pRac, pRho, koffrac, koffrho,αt,βt,αopto,βopto,topto)
   xplotp1 = range(0, L, length=partition+1)
   xplotm1 = range(0, L, length=partition-1)
   xplotm2 = range(0, L, length=partition-2)
@@ -106,9 +105,9 @@ function plots_run(nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,pR
   # plot!(legend=:topright, legendcolumns=3)
   savefig(pPNG*"kymo_ten_mi.pdf")
   
-  mi = minimum(ract_mirror[:,:]./ract_mirror[30,50])
-  ma = maximum(ract_mirror[:,:]./ract_mirror[30,50])
-  heatmap(tplot,x2plotp1,transpose(ract_mirror./ract_mirror[30,50]), clim=(1.0*mi ,0.99*ma ),  size=(250, 220),margin=15px, plot_title="Rac",plot_titlefontsize=10, framestyle = :box)
+  mi = minimum(ract_mirror[:,:]./ract_mirror[Int32(topto*4/5),50])
+  ma = maximum(ract_mirror[:,:]./ract_mirror[Int32(topto*4/5),50])
+  heatmap(tplot,x2plotp1,transpose(ract_mirror./ract_mirror[30,50]), clim=(1.0*mi ,(1/(αopto+1))*ma ),  size=(250, 220),margin=15px, plot_title="Rac",plot_titlefontsize=10, framestyle = :box)
   # ylims!(0, Ntot/L)
   xlabel!("t[s]")
   ylabel!("ξ[μm]")
@@ -122,9 +121,9 @@ function plots_run(nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,pR
   # plot!(legend=:topright, legendcolumns=3)
   savefig(pPNG*"kymo_rac.pdf")
 
-  mi =  minimum(rhot_mirror[:,:]./rhot_mirror[30,50])
-  ma = maximum(rhot_mirror[:,:]./rhot_mirror[30,50])
-  heatmap(tplot,x2plotp1,transpose(rhot_mirror./rhot_mirror[30,50]), clim=(0.85*mi, 0.60*ma ),  size=(250, 220),margin=15px, plot_title="Rho",plot_titlefontsize=10, framestyle = :box)
+  mi =  minimum(rhot_mirror[:,:]./rhot_mirror[Int32(topto*4/5),50])
+  ma = maximum(rhot_mirror[:,:]./rhot_mirror[Int32(topto*4/5),50])
+  heatmap(tplot,x2plotp1,transpose(rhot_mirror./rhot_mirror[30,50]), clim=(1*mi, (1/(βopto+1))*ma ),  size=(250, 220),margin=15px, plot_title="Rho",plot_titlefontsize=10, framestyle = :box)
   # ylims!(0, Ntot/L)
   xlabel!("t[s]")
   ylabel!("ξ[μm]")
@@ -385,8 +384,6 @@ function plots_run(nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,pR
   plot(p1, p2, p5,p4,p3,p6, layout = 6, plot_title="T=$T λ⁻²=$λ⁻²  σₐ₀=$σₐ₀  k=$k  η=$η",plot_titlefontsize=10,size=(800, 400))
   savefig(pPNG*"all_t=$T.pdf") 
 end
-
-#function to plot results for a model without biochemistry
 function plots_run2(nΔt,vt,xt,tensiont,λ⁻²,pPNG)
   xplotp1 = range(0, L, length=partition+1)
   xplotm1 = range(0, L, length=partition-1)
@@ -428,11 +425,11 @@ function plots_run2(nΔt,vt,xt,tensiont,λ⁻²,pPNG)
   savefig(pPNG*"all.pdf") 
 end
 
-#IN case you want to simulate multiple runs for diferent viscosities or frictions then you use this to plot the dependance on those
 function plots_end()
   xplotm1 = range(0, L, length=partition-1)
   xplotm2 = range(0, L, length=partition-2)
 
+  #FINAL PLOTS ARTICLE
   whicheta = 1 
   tensiontplot=tension[2,whicheta,end,:] 
   tensiontplot3=ρ_b[2,whicheta,end,:]
