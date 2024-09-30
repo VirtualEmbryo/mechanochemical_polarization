@@ -26,12 +26,13 @@ Gridap is a registered package in the official Julia package registry. Thus, the
 On the main section in the code there is specified the different constants and length of the simulation. There the values can be changed to the desired ones and then one can run the code as a normal Julia code.
 
 Each example is in the folder `./Examples`, including:
-* `./Examples/`
-* `./Examples/` 
-* `./Examples/`
+* `./Examples/Heatmap`
+* `./Examples/Opto_activation` 
 
 To run one of the examples, run it like
 ```
-cd ./Examples/Back_to_front 
+cd ./Examples
+julia
+include("./Mechanochemical_Opto_front_to_back.jl")
 
 ```
