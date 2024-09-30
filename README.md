@@ -33,6 +33,6 @@ To run one of the examples, run it like
 ```
 cd ./Examples
 julia
-include("./Mechanochemical_Opto_front_to_back.jl")
+include("./mechanochemical_opto_front2back.jl")
 
 ```
