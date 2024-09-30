@@ -3,6 +3,7 @@ using Plots
 using Plots.PlotMeasures
 using DelimitedFiles
 
+#plots for the simulations that do heatmap
 function plots_heat(time,α₀,β₀,nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,α, β, dᵃ, dᵇ,αt,βt)
   xplotp1 = range(0, L, length=partition+1)
   xplotm1 = range(0, L, length=partition-1)
@@ -62,7 +63,7 @@ function plots_heat(time,α₀,β₀,nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,
   savefig(pPNG*"alpha=$α₀ beta=$β₀.png") 
 end
 
-
+#standard array of plots for standard simulation
 function plots_run(nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,pRac, pRho, koffrac, koffrho,αt,βt,αopto,βopto,topto)
   xplotp1 = range(0, L, length=partition+1)
   xplotm1 = range(0, L, length=partition-1)
@@ -384,6 +385,8 @@ function plots_run(nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,pR
   plot(p1, p2, p5,p4,p3,p6, layout = 6, plot_title="T=$T λ⁻²=$λ⁻²  σₐ₀=$σₐ₀  k=$k  η=$η",plot_titlefontsize=10,size=(800, 400))
   savefig(pPNG*"all_t=$T.pdf") 
 end
+
+#plots for simulation without rac and rho, only mechanics
 function plots_run2(nΔt,vt,xt,tensiont,λ⁻²,pPNG)
   xplotp1 = range(0, L, length=partition+1)
   xplotm1 = range(0, L, length=partition-1)
@@ -425,6 +428,7 @@ function plots_run2(nΔt,vt,xt,tensiont,λ⁻²,pPNG)
   savefig(pPNG*"all.pdf") 
 end
 
+#plots for an array pf simulations where friction and viscosity change for each simulation
 function plots_end()
   xplotm1 = range(0, L, length=partition-1)
   xplotm2 = range(0, L, length=partition-2)
