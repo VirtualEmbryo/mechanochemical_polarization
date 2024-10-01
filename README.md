@@ -34,7 +34,7 @@ To run one of the examples, run it like
 ```
 cd ./Examples
 julia
-include("./mechanochemical_opto_front2back.jl")
+julia> include("./mechanochemical_opto_front2back.jl")
 
 ```
 
