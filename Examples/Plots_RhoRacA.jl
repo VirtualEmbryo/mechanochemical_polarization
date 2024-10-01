@@ -3,6 +3,7 @@ using Plots
 using Plots.PlotMeasures
 using DelimitedFiles
 
+#plots for the simulations that do heatmap
 function plots_heat(time,α₀,β₀,nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,α, β, dᵃ, dᵇ,αt,βt)
   xplotp1 = range(0, L, length=partition+1)
   xplotm1 = range(0, L, length=partition-1)
@@ -62,7 +63,7 @@ function plots_heat(time,α₀,β₀,nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,
   savefig(pPNG*"alpha=$α₀ beta=$β₀.png") 
 end
 
-
+#standard array of plots for standard simulation
 function plots_run(nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,pRac, pRho, koffrac, koffrho,αt,βt,αopto,βopto,topto)
   xplotp1 = range(0, L, length=partition+1)
   xplotm1 = range(0, L, length=partition-1)
@@ -264,27 +265,8 @@ function plots_run(nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,pR
   ylabel!("β") 
   xlabel!("ξ")
   savefig(pPNG*"beta.pdf")
-
-  lx=rhot[end,:]
-  x1=circshift(lx,1)
-  nrhot=(lx-x1)/Δx
-  plot(xplot,nrhot[2:end], legend=false,palette = :berlin25,size=(300, 220), margin = 5px,linewidth=1)
-  # ylims!(0, Ntot/L)
-  xlabel!("ξ[μm]")
-  ylabel!("nabla rhoA")
-  # plot!(legend=:topright, legendcolumns=3)
-  savefig(pPNG*"nablaRhoA.pdf")
-   
-  x1=circshift(xt,(1,0))
-  dotxt=(xt-x1)/Δt 
-  vdotx= vt - dotxt
-  plotvdotx = dotxt[:50:plot_lines:end,:]
-  plot(xplotm1,transpose(plotvdotx), legend=false,palette = :berlin10,size=(300, 220), margin = 5px, alpha = 0.9)
-  # ylims!(0, Ntot/L)
-  xlabel!("ξ[μm]")
-  ylabel!("∂t(x)")
-  # plot!(legend=:topright, legendcolumns=3)
-  savefig(pPNG*"dotx.pdf")
+ 
+ 
 
   
   plot(Mt, size=(300, 220), margin = 5px,linewidth=1)
@@ -294,13 +276,7 @@ function plots_run(nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,pR
   # plot!(legend=:topright, legendcolumns=3)
   savefig(pPNG*"Mt.pdf")
 
-  ρtplot=ρ0t[:1:plot_lines:end,:]
-  plot(xplotp1,transpose(ρtplot), legend=false,palette = :hawaii25,size=(300, 220), margin = 5px,linealpha=0.3,linewidth=1)
-  # ylims!(0, Ntot/L)
-  xlabel!("ξ[μm]")
-  ylabel!("ρ_u")
-  # plot!(legend=:topright, legendcolumns=3)
-  savefig(pPNG*"rho0t.pdf")
+ 
   
   plot(xplotp1, [ρ0t[end,:], ρt[end,:]], label=["ρ_u(ξ,t=$T)" "ρ_b(ξ,t=$T)"],size=(300, 200),  margin = 5px, linewidth=1)
   # ylims!(0, Ntot/L)
@@ -384,6 +360,8 @@ function plots_run(nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,pR
   plot(p1, p2, p5,p4,p3,p6, layout = 6, plot_title="T=$T λ⁻²=$λ⁻²  σₐ₀=$σₐ₀  k=$k  η=$η",plot_titlefontsize=10,size=(800, 400))
   savefig(pPNG*"all_t=$T.pdf") 
 end
+
+#plots for simulation without rac and rho, only mechanics
 function plots_run2(nΔt,vt,xt,tensiont,λ⁻²,pPNG)
   xplotp1 = range(0, L, length=partition+1)
   xplotm1 = range(0, L, length=partition-1)
@@ -425,6 +403,7 @@ function plots_run2(nΔt,vt,xt,tensiont,λ⁻²,pPNG)
   savefig(pPNG*"all.pdf") 
 end
 
+#plots for an array pf simulations where friction and viscosity change for each simulation
 function plots_end()
   xplotm1 = range(0, L, length=partition-1)
   xplotm2 = range(0, L, length=partition-2)
