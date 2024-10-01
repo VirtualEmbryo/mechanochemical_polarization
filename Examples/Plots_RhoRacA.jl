@@ -108,7 +108,7 @@ function plots_run(nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,pR
   
   mi = minimum(ract_mirror[:,:]./ract_mirror[Int32(topto*4/5),50])
   ma = maximum(ract_mirror[:,:]./ract_mirror[Int32(topto*4/5),50])
-  heatmap(tplot,x2plotp1,transpose(ract_mirror./ract_mirror[30,50]), clim=(1.0*mi ,(1/(αopto+1))*ma ),  size=(250, 220),margin=15px, plot_title="Rac",plot_titlefontsize=10, framestyle = :box)
+  heatmap(tplot,x2plotp1,transpose(ract_mirror./ract_mirror[30,50]), clim=(1.0*mi ,(1/(αopto/2+1))*ma ),  size=(250, 220),margin=15px, plot_title="Rac",plot_titlefontsize=10, framestyle = :box)
   # ylims!(0, Ntot/L)
   xlabel!("t[s]")
   ylabel!("ξ[μm]")
@@ -124,7 +124,7 @@ function plots_run(nΔt,Δx,vt,xt,tensiont,ρt,ρ0t,ract,rhot,Mt,λ⁻²,pPNG,pR
 
   mi =  minimum(rhot_mirror[:,:]./rhot_mirror[Int32(topto*4/5),50])
   ma = maximum(rhot_mirror[:,:]./rhot_mirror[Int32(topto*4/5),50])
-  heatmap(tplot,x2plotp1,transpose(rhot_mirror./rhot_mirror[30,50]), clim=(1*mi, (1/(βopto+1))*ma ),  size=(250, 220),margin=15px, plot_title="Rho",plot_titlefontsize=10, framestyle = :box)
+  heatmap(tplot,x2plotp1,transpose(rhot_mirror./rhot_mirror[30,50]), clim=(1*mi, (1/(βopto/2+1))*ma ),  size=(250, 220),margin=15px, plot_title="Rho",plot_titlefontsize=10, framestyle = :box)
   # ylims!(0, Ntot/L)
   xlabel!("t[s]")
   ylabel!("ξ[μm]")
