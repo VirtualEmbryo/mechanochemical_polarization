@@ -1,3 +1,6 @@
+# Kymographs may requite a bit of playing around their colorbar range clim=(min, max) depending on the opto signals
+# Otherwise they may look either too big or too small for the introduced signal
+
 using Gridap
 using Plots
 using Plots.PlotMeasures
