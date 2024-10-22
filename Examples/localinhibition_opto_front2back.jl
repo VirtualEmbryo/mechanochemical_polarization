@@ -373,7 +373,7 @@ rho0 = 0.01 #adimensionalizes the MCA concentration term for rac
 dᵃ = 0.04  #deactivation
 α₀ = 1.00  #basal activation
 α =0#.2*α₀ #activation through mechanics, zero for only local inhibition
-Drac = 0.5 #diffusion rate
+Drac = 0.0 #diffusion rate
 mTorc = 0.0#1
 αopto = 1 # opto input for Rac
 
@@ -381,7 +381,7 @@ mTorc = 0.0#1
 dᵇ = 0.04 #deactivation
 β₀ = 1.00 #basal activation
 β =0#.2*β₀ #activation through mechanics, zero for only local inhibition
-Drho = 0.5 #diffusion rate 
+Drho = 0.0 #diffusion rate 
 βopto = 0 # opto input for Rho
 
 #time variables
