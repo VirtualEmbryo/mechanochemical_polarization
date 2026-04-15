@@ -1,43 +1,131 @@
-# Mechanochemical polarization
+# Mechanochemical Polarization
 
-`mechanochemical_polarization` is distributed as a supplemental material to the paper:
+`mechanochemical_polarization` is a collection of Julia codes for simulating mechanochemical models of cell polarization and migration. This repository is distributed as supplemental material to the paper:
 
-> Henry De Belly, Andreu Fernández Gallén, Evelyn Strickland, Dorothy C. Estrada, Patrick J. Zager, Janis K Burkhardt, Hervé Turlier,  Orion D. Weiner Title: Long range mutual activation establishes Rho and Rac polarity during cell migration 
+> Henry De Belly, Andreu F. Gallen, Evelyn Strickland, Dorothy C. Estrada, David Sanchez Godinez, Eric Neiva, Patrick J. Zager, Tamas L. Nagy, Janis K Burkhardt, Hervé Turlier, Orion D. Weiner. "Long range mutual activation establishes Rho and Rac polarity during cell migration"
 
-The code is based on the [Gridap](https://github.com/gridap/Gridap.jl) for the finite-element implementation.
+The simulations model the coupled dynamics of Rho GTPase (Rho and Rac) activity and mechanical forces on the cell surface, leading to polarization during migration.
 
-## Theory and implementation
+## Key Features
 
-See the [Theory and implementation](theory_implementation.md) document.
+- Finite-element based simulations using [Gridap.jl](https://github.com/gridap/Gridap.jl)
+- Mechanochemical coupling between biochemical signaling and mechanical deformation
+- Support for various scenarios: optogenetic activation, local inhibition, heatmaps of parameter spaces
+- Axisymmetric 2D simulations for efficient computation
+- Visualization tools for Rho/Rac distributions and surface evolution
+- 2D axisymmetric implementation based on the original `SurfaceBulkViscousFlows` repository ( https://github.com/ericneiva/SurfaceBulkViscousFlows ) , adapted for mechanochemical focus
+
+## Repository Structure
+
+- `Mechanochemical_general_code.jl`: Main simulation script for 1D mechanochemical models
+- `Plots_RhoRacA.jl`: Plotting utilities for Rho and Rac distributions
+- `Examples/`: Collection of example simulations
+  - `Heatmap/`: Parameter sweep simulations
+  - `Opto_activation/`: Optogenetic perturbation studies
+  - `Opto_activation_local_inhibition/`: Combined opto and inhibition
+- `mechanochemical_2D_axisymmetric/`: Julia package for 2D axisymmetric surface flow simulations
+  - `src/`: Source code modules
+  - `examples/`: Example scripts
+  - `output/`: Simulation outputs
 
 ## Requirements
 
-* **`Gridap`** see [installation instructions here](https://github.com/gridap/Gridap.jl?tab=readme-ov-file#readme).
+- **Julia**: Version 1.6 or later (tested with 1.11)
+- **Gridap.jl**: Finite element library
+- **Plots.jl**: For visualization
+- Other dependencies listed in `mechanochemical_2D_axisymmetric/Project.toml`
 
-Gridap is a registered package in the official Julia package registry. Thus, the installation of Gridap is straight forward using the Julia's package manager. Open the Julia REPL, type ] to enter package mode, and install as follows
+## Installation
 
->pkg> add Gridap
+1. Clone this repository:
+   ```bash
+   git clone <repository-url>
+   cd mechanochemical_polarization
+   ```
 
-* **`Plots`** Julia library for Plotting
+2. Install Julia dependencies:
+   ```bash
+   julia --project=mechanochemical_2D_axisymmetric
+   ```
+   ```julia
+   julia> import Pkg; Pkg.instantiate()
+   ```
 
+3. For the main scripts, ensure Gridap and Plots are installed:
+   ```julia
+   julia> using Pkg; Pkg.add(["Gridap", "Plots"])
+   ```
 
 ## Usage
 
-On the main section in the code there is specified the different constants and length of the simulation. There the values can be changed to the desired ones and then one can run the code as a normal Julia code.
+### Running Main Simulations
 
-Each example is in the folder `./Examples`, including:
-* `./Examples/Heatmap`
-* `./Examples/Opto_activation` 
-* `./Examples/Opto_activation_local_inhibition` 
+The main simulation script is `Mechanochemical_general_code.jl`. Modify the parameters in the main section and run:
 
-To run one of the examples, run it like
-```
-cd ./Examples
-julia
-julia> include("./mechanochemical_opto_front2back.jl")
-
+```bash
+julia Mechanochemical_general_code.jl
 ```
 
-Results will be stored in the relevant folder, each example code has a folder name in the "simulation" parameter. The folder name will be for example Heatmap and the subfolders that will create to store the simulation data will depend on the simulation parameters introduced.
+Key parameters include:
+- `L`: Domain length
+- `T`: Simulation time
+- `Δt`: Time step
+- Mechanical parameters: `vCTE`, `α`, `β`, `σₐ₀`
+- Biochemical parameters: reaction rates, diffusion coefficients
 
-The code stores a copy of itself in the output folder, to be able to check after a given time for the exact version of the code and of mechanical parameters that where used.
+### Running Examples
+
+Navigate to the `Examples/` directory and run specific example scripts:
+
+```bash
+cd Examples
+julia --project=../mechanochemical_2D_axisymmetric
+julia> include("mechanochemical_opto_front2back.jl")
+```
+
+Available examples:
+- `Heatmap_Time2LosePol.jl`: Parameter sweeps for polarization loss
+- `localinhibition_opto_front2back.jl`: Local inhibition with opto perturbations
+- `mechanochemical_opto_front2back.jl`: Basic mechanochemical with opto
+
+Results are saved in subfolders based on simulation parameters.
+
+### 2D Axisymmetric Simulations
+
+For full 2D surface simulations, use the `mechanochemical_2D_axisymmetric` package:
+
+```bash
+cd mechanochemical_2D_axisymmetric
+julia --project=.
+julia> include("examples/SurfaceViscousFlows/SurfaceViscousFlows.jl")
+```
+
+## Theory and Implementation
+
+The model couples Rho/Rac GTPase signaling with surface mechanics. Rho promotes contractility, while Rac drives protrusion. Mechanical feedback creates positive feedback loops leading to polarization.
+
+For detailed mathematical formulation, see the supplemental materials of the associated paper.
+
+## Output and Visualization
+
+- Simulation data saved as VTU files for ParaView visualization
+- PNG plots of concentration profiles over time
+- Text files with parameter values and timing data
+
+Use `Plots_RhoRacA.jl` for custom plotting.
+
+## Contributing
+
+This code is provided as supplemental material. For questions or modifications, contact the authors.
+
+## License
+
+See `mechanochemical_2D_axisymmetric/LICENSE` for details.
+
+## Authors
+
+- Andreu Fernández Gallén
+- Eric Neiva 
+- Hervé Turlier 
+
+Based on work from Eric Neiva's `SurfaceBulkViscousFlows` repository.
