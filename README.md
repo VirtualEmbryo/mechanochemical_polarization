@@ -2,9 +2,11 @@
 
 `mechanochemical_polarization` is a collection of Julia codes for simulating mechanochemical models of cell polarization and migration. This repository is distributed as supplemental material to the paper:
 
-> Henry De Belly, Andreu F. Gallen, Evelyn Strickland, Dorothy C. Estrada, David Sanchez Godinez, Eric Neiva, Patrick J. Zager, Tamas L. Nagy, Janis K Burkhardt, Hervé Turlier, Orion D. Weiner. "Long range mutual activation establishes Rho and Rac polarity during cell migration"
+> Henry De Belly*, Andreu F. Gallen, Evelyn Strickland, Dorothy C. Estrada, David Sanchez Godinez, Eric Neiva, Patrick J. Zager, Tamas L. Nagy, Janis K Burkhardt, Hervé Turlier*, Orion D. Weiner*. "Long range mutual activation establishes Rho and Rac polarity during cell migration" **Nature Cell Biology** 2026.
 
 The simulations model the coupled dynamics of Rho GTPase (Rho and Rac) activity and mechanical forces on the cell surface, leading to polarization during migration.
+
+---
 
 ## Key Features
 
@@ -27,6 +29,7 @@ The simulations model the coupled dynamics of Rho GTPase (Rho and Rac) activity 
   - `src/`: Source code modules
   - `examples/`: Example scripts
   - `output/`: Simulation outputs
+
 
 ## Requirements
 
@@ -55,6 +58,8 @@ The simulations model the coupled dynamics of Rho GTPase (Rho and Rac) activity 
    ```julia
    julia> using Pkg; Pkg.add(["Gridap", "Plots"])
    ```
+
+---
 
 ## Usage
 
@@ -104,7 +109,7 @@ julia> include("examples/SurfaceViscousFlows/SurfaceViscousFlows.jl")
 
 The model couples Rho/Rac GTPase signaling with surface mechanics. Rho promotes contractility, while Rac drives protrusion. Mechanical feedback creates positive feedback loops leading to polarization.
 
-For detailed mathematical formulation, see the supplemental materials of the associated paper.
+For detailed mathematical formulation, see the supplemental materials of the associated paper: .
 
 ## Output and Visualization
 
@@ -114,18 +119,31 @@ For detailed mathematical formulation, see the supplemental materials of the ass
 
 Use `Plots_RhoRacA.jl` for custom plotting.
 
-## Contributing
+---
+
+## Authors and Contributing
 
 This code is provided as supplemental material. For questions or modifications, contact the authors.
-
-## License
-
-See `mechanochemical_2D_axisymmetric/LICENSE` for details.
-
-## Authors
-
 - Andreu Fernández Gallén
 - Eric Neiva 
 - Hervé Turlier 
 
-Based on work from Eric Neiva's `SurfaceBulkViscousFlows` repository.
+Based on the code from Eric Neiva [SurfaceBulkViscousFlows](https://github.com/VirtualEmbryo/SurfaceBulkViscousFlows).
+
+## Funding
+
+This project was funded by the European Union's Horizon 2020 research and innovation programme under the **Marie Skłodowska-Curie** grant agreement No. 101150259 (A.F.G)  and received funding under the **Marie Skłodowska-Curie** grant agreement No. 101105565 (E.N) and the **European Research Council** grant agreement No. 949267 (H.T.).
+
+## Citing
+
+If you use this code in your research, please cite:
+
+> Henry De Belly*, Andreu F. Gallen, Evelyn Strickland, Dorothy C. Estrada, David Sanchez Godinez, Eric Neiva, Patrick J. Zager, Tamas L. Nagy, Janis K Burkhardt, Hervé Turlier*, Orion D. Weiner*. "Long range mutual activation establishes Rho and Rac polarity during cell migration" **Nature Cell Biology** 2026.
+
+<!-- Repository DOI:
+> vertAX contributors (2019). vertAX: a differentiable vertex model framework. [doi:10.5281/zenodo.3555620](https://zenodo.org/record/3555620) -->
+
+## License
+
+This code is released under the license specified in [`LICENSE`](LICENSE).
+
