@@ -128,7 +128,7 @@ This code is provided as supplemental material. For questions or modifications, 
 - Eric Neiva 
 - Hervé Turlier 
 
-Based on the code from Eric Neiva [SurfaceBulkViscousFlows](https://github.com/VirtualEmbryo/SurfaceBulkViscousFlows).
+Based on an original code from Eric Neiva: [SurfaceBulkViscousFlows](https://github.com/VirtualEmbryo/SurfaceBulkViscousFlows).
 
 ## Funding
 
@@ -145,5 +145,5 @@ If you use this code in your research, please cite:
 
 ## License
 
-This code is released under the license specified in [`LICENSE`](LICENSE).
+This code is released under the [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/) [`License`](LICENSE).
 
