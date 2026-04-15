@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/864892134.svg)](https://doi.org/10.5281/zenodo.19591544)
+
 # Mechanochemical Polarization
 
 `mechanochemical_polarization` is a collection of Julia codes for simulating mechanochemical models of cell polarization and migration. This repository is distributed as supplemental material to the paper:
