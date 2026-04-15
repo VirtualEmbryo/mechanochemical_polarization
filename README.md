@@ -124,11 +124,12 @@ Use `Plots_RhoRacA.jl` for custom plotting.
 ## Authors and Contributing
 
 This code is provided as supplemental material. For questions or modifications, contact the authors.
-- Andreu Fernández Gallén
-- Eric Neiva 
-- Hervé Turlier 
 
-Based on an original code from Eric Neiva: [SurfaceBulkViscousFlows](https://github.com/VirtualEmbryo/SurfaceBulkViscousFlows).
+- Andreu Fernández Gallén
+- [Eric Neiva](https://github.com/ericneiva)
+- [Hervé Turlier](https://github.com/VirtualEmbryo)
+
+This work re-used parts of original code from Eric Neiva: [SurfaceBulkViscousFlows](https://github.com/VirtualEmbryo/SurfaceBulkViscousFlows), based on a work by Eric Neiva and Hervé Turlier: [arXiv:2505.05723](https://arxiv.org/abs/2505.05723)
 
 ## Funding
 
